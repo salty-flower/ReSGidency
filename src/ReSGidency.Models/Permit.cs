@@ -1,6 +1,6 @@
 ﻿namespace ReSGidency.Models;
 
-public enum Permits
+public enum Permit
 {
     PEP,
     EP,

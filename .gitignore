@@ -365,3 +365,6 @@ FodyWeavers.xsd
 # prettier
 package.json
 pnpm-lock.yaml
+
+# Generated Combined Definition file
+src/ReSGidency.Models/_Definitions.cs

@@ -1,18 +1,19 @@
-﻿namespace ReSGidency.Models
-{
-    public enum QualificationLevel
-    {
-        PhD,
-        Master,
-        Bachelor,
-        Diploma,
-        Others
-    }
+﻿namespace ReSGidency.Models;
 
-    public record Qualification(
-        QualificationLevel Level,
-        string? Institution,
-        string? Major,
-        DateTime? GraduationDate
-    );
+public enum QualificationLevel
+{
+    PhD,
+    Master,
+    Bachelor,
+    Diploma,
+    Others
 }
+
+public record Qualification(
+    QualificationLevel Level,
+    string[] InstitutionDescriptors,
+    string? Institution,
+    string? Major,
+    DateTime? GraduationDate,
+    string? Country
+);

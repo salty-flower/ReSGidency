@@ -1,9 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratedDefinitionFile>_Definitions.cs</GeneratedDefinitionFile>
+    </PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <Target Name="ConcatDefinitions" AfterTargets="Build">
+        <PropertyGroup>
+            <NonDefinitionFiles>
+                RecordExamples.cs;
+                InstitutionDescriptorExtensions.cs
+            </NonDefinitionFiles>
+        </PropertyGroup>
+        <ItemGroup>
+            <DefinitionFiles Exclude="$(NonDefinitionFiles)" Include="*.cs" />
+            <ConcatenatedDefinition
+                Include="$([System.Text.RegularExpressions.Regex]::Replace(
+                             $([System.IO.File]::ReadAllText(%(DefinitionFiles.Identity))
+                                 .Replace('namespace $(ProjectName);', '')
+                     ), '[%0D%0A]+', '%0D'))"
+            />
+        </ItemGroup>
+        <WriteLinesToFile
+            File="$(GeneratedDefinitionFile)"
+            Lines="@(ConcatenatedDefinition)"
+            Overwrite="true"
+        />
+    </Target>
 
+    <ItemGroup>
+        <Content Remove="$(GeneratedDefinitionFile)"/>
+    </ItemGroup>
 </Project>
