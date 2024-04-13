@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34804.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReSGidency.Console", "ConsoleApp1\ReSGidency.Console.csproj", "{A69EEF2E-20F1-4500-8CEB-A1E97143C111}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReSGidency.Console", "src\ReSGidency.Console\ReSGidency.Console.csproj", "{A69EEF2E-20F1-4500-8CEB-A1E97143C111}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
