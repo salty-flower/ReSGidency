@@ -1,24 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <GeneratedDefinitionFile>_Definitions.cs</GeneratedDefinitionFile>
-        <DefaultItemExcludes>$(GeneratedDefinitionFile)</DefaultItemExcludes>
+        <GeneratedDefinitionFile>
+            ConstantsContainer.Definitions.Generated.cs
+        </GeneratedDefinitionFile>
     </PropertyGroup>
 
-    <Target AfterTargets="Build" Name="ConcatDefinitions">
+    <Target BeforeTargets="Build" Name="ConcatDefinitions">
         <PropertyGroup>
             <NonDefinitionFiles>
-                RecordExamples.cs;
-                InstitutionDescriptorExtensions.cs
+                ConstantsContainer.*.cs;
+                *.Generated.cs;
+                InstitutionDescriptorExtensions.cs;
             </NonDefinitionFiles>
         </PropertyGroup>
         <ItemGroup>
             <DefinitionFiles Exclude="$(NonDefinitionFiles)" Include="*.cs" />
             <ConcatenatedDefinition
-                Include="$([System.Text.RegularExpressions.Regex]::Replace(
-                             $([System.IO.File]::ReadAllText(%(DefinitionFiles.Identity))
-                                 .Replace('namespace $(ProjectName);', '')
-                     ), '[%0D%0A]+', '%0D'))"
+                Include="namespace $(ProjectName)%3B public static partial class ConstantsContainer { public const string Definitions = &quot;&quot;&quot;"
             />
+            <ConcatenatedDefinition
+                Include="$(
+                 [System.Text.RegularExpressions.Regex]::Replace(
+                     $([System.IO.File]::ReadAllText(%(DefinitionFiles.Identity))
+                         .Replace('namespace $(ProjectName);', '')
+                 ), '[%0D%0A]+', '%0D'))"
+            />
+            <ConcatenatedDefinition Include="&quot;&quot;&quot;%3B}" />
         </ItemGroup>
         <WriteLinesToFile
             File="$(GeneratedDefinitionFile)"
@@ -26,9 +33,4 @@
             Overwrite="true"
         />
     </Target>
-
-    <ItemGroup>
-        <Content Remove="$(GeneratedDefinitionFile)" />
-        <None Include="$(GeneratedDefinitionFile)" />
-    </ItemGroup>
 </Project>

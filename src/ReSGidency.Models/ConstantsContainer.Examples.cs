@@ -1,6 +1,6 @@
 ﻿namespace ReSGidency.Models;
 
-public static class RecordExamples
+public static partial class ConstantsContainer
 {
     public static readonly Record Example1 =
         new(
