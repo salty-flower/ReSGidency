@@ -23,6 +23,7 @@
                  [System.Text.RegularExpressions.Regex]::Replace(
                      $([System.IO.File]::ReadAllText(%(DefinitionFiles.Identity))
                          .Replace('namespace $(ProjectName);', '')
+                         .Replace('%0A', '%0D')
                  ), '[%0D%0A]+', '%0D'))"
             />
             <ConcatenatedDefinition Include="&quot;&quot;&quot;%3B}" />

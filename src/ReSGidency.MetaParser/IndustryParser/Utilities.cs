@@ -38,6 +38,12 @@ static partial class Utilities
         return [.. industries];
     }
 
+    internal static async Task<string[]> FetchIndustriesFromRemote()
+    {
+        using HttpClient client = new();
+        return GetIndustries((await client.GetAsync(Configs.TableURL)).Content.ReadAsStream());
+    }
+
     [GeneratedRegex(@"^\d{2}$")]
     private static partial Regex Level1IndustryPattern();
 }

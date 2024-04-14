@@ -12,6 +12,7 @@ public class Program
     static async Task<int> Main(string[] args)
     {
         EntryCommand.AddCommand(IndustryParser.Commands.GetIndustriesCommand);
+        EntryCommand.AddCommand(PromptWriter.Commands.ProcessEntriesCommand);
         return await EntryCommand.InvokeAsync(args);
     }
 }
