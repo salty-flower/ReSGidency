@@ -11,7 +11,6 @@ namespace ReSGidency.MetaParser.PromptWriter
                 getDefaultValue: () => []
             );
 
-        // output file option
         private static readonly Option<FileInfo> OutputFileOption =
             new(
                 aliases: ["-o", "--output-file"],
@@ -42,10 +41,7 @@ namespace ReSGidency.MetaParser.PromptWriter
         private static void PrintFullPrompt(IEnumerable<string> entries, FileInfo outputFile) =>
             File.WriteAllText(
                 outputFile.FullName,
-                $"{Configs.HEADER_TEXT}\n" +
-                $"{Configs.DEFINITION_TEXT}\n" +
-                $"{Configs.GetConcatenatedIndustries(IndustryParser.Utilities.FetchIndustriesFromRemote().Result)}" +
-                $"{Configs.GetConcatenatedEntries(entries)}" 
-               );
+                $"{Configs.FULL_HEADER}\n{Configs.GetConcatenatedEntries(entries)}"
+            );
     }
 }
