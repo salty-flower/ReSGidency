@@ -1,12 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
         <GeneratedDefinitionFile>_Definitions.cs</GeneratedDefinitionFile>
+        <DefaultItemExcludes>$(GeneratedDefinitionFile)</DefaultItemExcludes>
     </PropertyGroup>
 
-    <Target Name="ConcatDefinitions" AfterTargets="Build">
+    <Target AfterTargets="Build" Name="ConcatDefinitions">
         <PropertyGroup>
             <NonDefinitionFiles>
                 RecordExamples.cs;
@@ -30,6 +28,7 @@
     </Target>
 
     <ItemGroup>
-        <Content Remove="$(GeneratedDefinitionFile)"/>
+        <Content Remove="$(GeneratedDefinitionFile)" />
+        <None Include="$(GeneratedDefinitionFile)" />
     </ItemGroup>
 </Project>
