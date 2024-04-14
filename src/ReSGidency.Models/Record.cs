@@ -5,20 +5,17 @@ public record Record(
     string UserName,
     DateOnly ApplicationDate,
     DateOnly? EndDate,
-    DateOnly UpdateDate,
+    DateTime UpdateDate,
     ApplicationStatus Status,
-
     // Attributes parsed from description
     bool? Family,
     bool? Sponsored,
     bool? Male,
-
-    string? Nationality,
+    string? Nationality, // Infer from context. Chinese text might be from China/Malaysia. "国内" in most case is China. Prefer adjective form.
     Qualification[]? Qualifications,
-    Permit[]? Permits,
+    Permit[]? Permits, // Order: new -> old
     string? Industry,
     int? BaseMonthSalary,
-    TimeSpan? DurationInSG,
-
+    TimeSpan? DurationInSG, // e.g. "{来新加坡,来新,在新}\d年{\d个月}"
     int? ApplicationCount
 );

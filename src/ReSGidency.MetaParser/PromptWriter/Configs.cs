@@ -5,16 +5,15 @@ namespace ReSGidency.MetaParser.PromptWriter;
 static partial class Configs
 {
     internal const string PARSE_HINTS = """
-        1. Nationality is inferrable from context. Chinese text might from China/Malaysia. "国内" in most case is China.s
-        2. Entry format is "Username Descriptions Status ApplicationDate EndDate? UpdateDate"
+        - Entry format is "Username Descriptions Status ApplicationDate EndDate? UpdateDate"
+        - Whenever the attribute is not present, give null, instead of arbitrary values.
         """;
 
     internal const string HEADER_TEXT = $"""
-        Hi. I would like you to help me extract information from unstructured text.
+        Hi. Help me extract information from unstructured text.
         Specifically, these are info shared by individuals
         about their permanent residency/citizenship application in Singapore.
-        Note that
-            {PARSE_HINTS}
+        {PARSE_HINTS}
 
         I will supply you the full definition for each entity with C# class code,
         and the list of industries from the Singapore Standard Industrial Classification (SSIC).
