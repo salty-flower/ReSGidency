@@ -14,6 +14,7 @@ public class Program
         EntryCommand.AddCommand(IndustryParser.Commands.GetIndustriesCommand);
         EntryCommand.AddCommand(PromptWriter.Commands.ProcessEntriesCommand);
         EntryCommand.AddCommand(GPTConnector.Commands.GenerateResponseCommand);
+        EntryCommand.AddCommand(UpstreamGrabber.Commands.GrabEntriesCommand);
         return await EntryCommand.InvokeAsync(args);
     }
 }
