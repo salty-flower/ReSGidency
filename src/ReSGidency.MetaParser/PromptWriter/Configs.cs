@@ -5,7 +5,7 @@ namespace ReSGidency.MetaParser.PromptWriter;
 static partial class Configs
 {
     internal const string PARSE_HINTS = """
-        - Entry format is "Username Descriptions Status ApplicationDate EndDate? UpdateDate"
+        - Entry format is "Username || Descriptions || Status || ApplicationDate || (EndDate ||)? UpdateDate"
         - Whenever the attribute is not present, give null, instead of arbitrary values.
         """;
 
