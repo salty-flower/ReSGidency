@@ -10,14 +10,14 @@ static partial class Configs
         """;
 
     internal const string HEADER_TEXT = $"""
-        Hi. Help me extract information from unstructured text.
+        You are expert in extracting information from unstructured text.
         Specifically, these are info shared by individuals
         about their permanent residency/citizenship application in Singapore.
         {PARSE_HINTS}
 
-        I will supply you the full definition for each entity with C# class code,
+        You are given full definition for each entity with C# class code,
         and the list of industries from the Singapore Standard Industrial Classification (SSIC).
-        You should output the respetive JSON data only, with no other text.
+        You should output the respetive JSON data only, with no other text, not even Markdown raw-text markers.
         """;
 
     internal const string DEFINITION_TEXT =
