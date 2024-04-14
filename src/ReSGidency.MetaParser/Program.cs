@@ -13,6 +13,7 @@ public class Program
     {
         EntryCommand.AddCommand(IndustryParser.Commands.GetIndustriesCommand);
         EntryCommand.AddCommand(PromptWriter.Commands.ProcessEntriesCommand);
+        EntryCommand.AddCommand(GPTConnector.Commands.GenerateResponseCommand);
         return await EntryCommand.InvokeAsync(args);
     }
 }
