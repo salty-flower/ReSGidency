@@ -1,15 +1,24 @@
 ﻿namespace ReSGidency.Models;
 
 public record Record(
+    // Metadata provided by website
     string UserName,
+    DateOnly ApplicationDate,
+    DateOnly? EndDate,
+    DateOnly UpdateDate,
+    ApplicationStatus Status,
+
+    // Attributes parsed from description
     bool? Family,
+    bool? Sponsored,
     bool? Male,
-    string? Industry,
+
+    string? Nationality,
     Qualification[]? Qualifications,
     Permit[]? Permits,
-    string? Nationality,
+    string? Industry,
     int? BaseMonthSalary,
-    TimeSpan? StayDuration,
-    ApplicationStatus Status,
+    TimeSpan? DurationInSG,
+
     int? ApplicationCount
 );
