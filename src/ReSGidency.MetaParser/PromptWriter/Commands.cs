@@ -35,8 +35,5 @@ static class Commands
     }
 
     private static void PrintFullPrompt(IEnumerable<string> entries, FileInfo outputFile) =>
-        File.WriteAllText(
-            outputFile.FullName,
-            $"{Configs.FULL_HEADER}\n{Configs.GetConcatenatedEntries(entries)}"
-        );
+        File.WriteAllText(outputFile.FullName, Configs.GetPromptText(entries));
 }

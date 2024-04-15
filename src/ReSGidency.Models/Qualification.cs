@@ -10,10 +10,10 @@ public enum QualificationLevel
 }
 
 public record Qualification(
-    QualificationLevel Level,
+    QualificationLevel Level, // eg. "大学" with no other information means Bachelor
     string[] InstitutionDescriptors,
     string? Institution,
     string? Major,
     DateTime? GraduationDate,
-    string? Country
+    string? Country // eg. "本地大学" would mean Singapore
 );

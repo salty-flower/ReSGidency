@@ -15,9 +15,10 @@ static partial class Configs
         about their permanent residency/citizenship application in Singapore.
         {PARSE_HINTS}
 
-        You are given full definition for each entity with C# class code,
+        You are given full definition for each entity with C# class code (use full name for enum, not integer),
         and the list of industries from the Singapore Standard Industrial Classification (SSIC).
-        You should output the respetive JSON data only, with no other text, not even Markdown raw-text markers.
+        For each entry, you should write one JSON object in one line,
+        with no other text, not even Markdown raw-text markers "```", and no surrounding array symbols "[]".
         """;
 
     internal const string DEFINITION_TEXT =
@@ -27,4 +28,7 @@ static partial class Configs
 
     internal static string GetConcatenatedEntries(IEnumerable<string> entries) =>
         $"===BEGIN ENTRIES\n{string.Join("\n\n", entries)}\n===END ENTRIES";
+
+    internal static string GetPromptText(IEnumerable<string> entries) =>
+        $"{FULL_HEADER}\n{GetConcatenatedEntries(entries)}";
 }

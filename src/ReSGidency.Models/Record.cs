@@ -16,6 +16,6 @@ public record Record(
     Permit[]? Permits, // Order: new -> old
     string? Industry,
     int? BaseMonthSalary,
-    TimeSpan? DurationInSG, // e.g. "{来新加坡,来新,在新}\d年{\d个月}"
+    TimeSpan? DurationInSG, // eg. "{来新加坡,来新,在新}\d年{\d个月}", JSON eg. "P1Y2M8D"
     int? ApplicationCount
 );
