@@ -1,4 +1,5 @@
-﻿using OpenAI_API;
+﻿using System.Collections.Concurrent;
+using OpenAI_API;
 using OpenAI_API.Chat;
 using OpenAI_API.Models;
 
@@ -35,37 +36,46 @@ static class Utilities
             .ToList();
     }
 
-    internal static async Task<IList<string>> ParseBulkAsync(
-        IEnumerable<string> entries,
-        string openAIKey
-    )
+    internal static async Task<string> ParseBulkAsync(IEnumerable<string> entries, string openAIKey)
     {
-        OpenAIAPI apiInstance = new OpenAIAPI(openAIKey);
+        OpenAIAPI apiInstance = new(openAIKey);
 
         var result = new List<string>();
+        var tasks = new ConcurrentBag<Task>();
 
         var groups = entries
             .Chunk(Configs.MAX_ENTRIES_ALLOWED)
             .Chunk(Configs.MAX_REQUESTS_PER_MINUTE)
+            .Select(g => g.ToList())
             .ToList();
 
         foreach (var g in groups)
         {
-            _ = Task.Run(() =>
-            {
-                foreach (var item in g)
+            foreach (
+                var t in g.Select(async item =>
                 {
-                    Console.WriteLine("requested!");
-                    _ = Task.Run(() =>
-                    {
-                        result.AddRange(ParseBatchAsync(item, apiInstance).Result);
-                    });
-                }
-            });
+                    Console.WriteLine($"Requested {item.Length} entries.");
+                    var thisBatchResult = (await ParseBatchAsync(item, apiInstance))
+                        .Select(SanitizeGPTResponse)
+                        .ToList();
+                    Console.WriteLine($"Processed {thisBatchResult.Count} entries.");
+                    lock (result)
+                        result.AddRange(thisBatchResult);
+                })
+            )
+                tasks.Add(t);
             await Task.Delay(TimeSpan.FromMinutes(1));
         }
+        await Task.WhenAll(tasks);
+        return $"[{string.Join(',', result)}]";
+    }
 
-        return result;
+    internal static string SanitizeGPTResponse(string response)
+    {
+        if (response.Last() == ',')
+            response = response[..^1];
+
+        return response.Replace("```json", "").Replace("```", "");
     }
 
     internal static async Task<string> GetGPTReply(string fullPrompt, string openAIKey) =>

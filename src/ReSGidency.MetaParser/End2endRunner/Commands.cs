@@ -37,11 +37,8 @@ static class Commands
         var gptParsedEntries = await GPTConnector.Utilities.ParseBulkAsync(entries, openAIKey);
         if (jsonOutput is not null)
         {
-            await File.WriteAllLinesAsync(jsonOutput.FullName, gptParsedEntries);
+            await File.WriteAllTextAsync(jsonOutput.FullName, gptParsedEntries);
         }
-        foreach (var e in gptParsedEntries)
-        {
-            Console.WriteLine(e);
-        }
+        Console.WriteLine(gptParsedEntries);
     }
 }
