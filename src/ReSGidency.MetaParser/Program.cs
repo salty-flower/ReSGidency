@@ -15,6 +15,7 @@ public class Program
         EntryCommand.AddCommand(PromptWriter.Commands.ProcessEntriesCommand);
         EntryCommand.AddCommand(GPTConnector.Commands.GenerateResponseCommand);
         EntryCommand.AddCommand(UpstreamGrabber.Commands.GrabEntriesCommand);
+        EntryCommand.AddCommand(End2endRunner.Commands.RunEnd2endCommand);
         return await EntryCommand.InvokeAsync(args);
     }
 }

@@ -11,7 +11,7 @@ static class Commands
             getDefaultValue: () => new("prompt.txt")
         );
 
-    private static readonly Option<string> APIKeyOption =
+    internal static readonly Option<string> APIKeyOption =
         new(
             aliases: ["-k", "--openai-key"],
             description: $"The OpenAI API key to use, "
@@ -57,10 +57,10 @@ static class Commands
         FileInfo? outputFile
     )
     {
-        var promptText = File.ReadAllText(promptFile.FullName);
-        var api = new OpenAI_API.OpenAIAPI(openAIKey);
-        var res = await api.Chat.CreateChatCompletionAsync(promptText);
-        var responseText = res.Choices[0].Message.TextContent;
+        var responseText = await Utilities.GetGPTReply(
+            File.ReadAllText(promptFile.FullName),
+            openAIKey
+        );
 
         if (outputFile is not null)
         {
