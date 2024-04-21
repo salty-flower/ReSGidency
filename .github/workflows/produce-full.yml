@@ -17,6 +17,8 @@ jobs:
         name: ubuntu-latest
     - name: Display structure of downloaded files
       run: ls -R -l -a
+    - name: make executable
+      run: chmod +x ReSGidency.Console
     - name: run
       run: ./ReSGidency.Console run-end2end -k ${{ secrets.OPENAI_API_KEY }}
     - name: Upload a Build Artifact
