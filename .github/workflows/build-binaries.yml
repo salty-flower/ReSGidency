@@ -2,9 +2,9 @@ name: build-binaries
 
 on:
     push:
-        branches: ["master"]
+        branches: ["main"]
     pull_request:
-        branches: ["master"]
+        branches: ["main"]
 
 env:
     MODEL_PROJECT_NAME: ReSGidency.Models
