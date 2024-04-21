@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: download binary
+    - name: download binary exec
       uses: dawidd6/action-download-artifact@v3
       with:
         workflow: build-binaries.yml
@@ -21,6 +21,8 @@ jobs:
       run: chmod +x ReSGidency.Console
     - name: run
       run: ./ReSGidency.Console run-end2end -k "${{ secrets.OPENAI_API_KEY }}"
+    - name: Display structure of downloaded files
+      run: ls -R -l -a
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.2
       with:
