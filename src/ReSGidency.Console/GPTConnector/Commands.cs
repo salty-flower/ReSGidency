@@ -1,6 +1,6 @@
 ﻿using System.CommandLine;
 
-namespace ReSGidency.MetaParser.GPTConnector;
+namespace ReSGidency.Console.GPTConnector;
 
 static class Commands
 {
@@ -66,6 +66,6 @@ static class Commands
         {
             File.WriteAllText(outputFile.FullName, responseText);
         }
-        Console.WriteLine(responseText);
+        System.Console.WriteLine(responseText);
     }
 }

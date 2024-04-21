@@ -1,6 +1,6 @@
 ﻿using System.CommandLine;
 
-namespace ReSGidency.MetaParser.End2endRunner;
+namespace ReSGidency.Console.End2endRunner;
 
 static class Commands
 {
@@ -44,6 +44,6 @@ static class Commands
         {
             await File.WriteAllTextAsync(jsonOutput.FullName, gptParsedEntries);
         }
-        Console.WriteLine(gptParsedEntries);
+        System.Console.WriteLine(gptParsedEntries);
     }
 }

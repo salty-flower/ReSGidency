@@ -3,7 +3,7 @@ using OpenAI_API;
 using OpenAI_API.Chat;
 using OpenAI_API.Models;
 
-namespace ReSGidency.MetaParser.GPTConnector;
+namespace ReSGidency.Console.GPTConnector;
 
 static class Utilities
 {
@@ -54,11 +54,11 @@ static class Utilities
             foreach (
                 var t in g.Select(async item =>
                 {
-                    Console.WriteLine($"Requested {item.Length} entries.");
+                    System.Console.WriteLine($"Requested {item.Length} entries.");
                     var thisBatchResult = (await ParseBatchAsync(item, apiInstance))
                         .Select(SanitizeGPTResponse)
                         .ToList();
-                    Console.WriteLine($"Processed {thisBatchResult.Count} entries.");
+                    System.Console.WriteLine($"Processed {thisBatchResult.Count} entries.");
                     lock (result)
                         result.AddRange(thisBatchResult);
                 })

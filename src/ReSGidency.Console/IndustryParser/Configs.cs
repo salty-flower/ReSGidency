@@ -1,4 +1,4 @@
-﻿namespace ReSGidency.MetaParser.IndustryParser;
+﻿namespace ReSGidency.Console.IndustryParser;
 
 static class Configs
 {

@@ -1,6 +1,6 @@
 ﻿using System.CommandLine;
 
-namespace ReSGidency.MetaParser.PromptWriter;
+namespace ReSGidency.Console.PromptWriter;
 
 static class Commands
 {

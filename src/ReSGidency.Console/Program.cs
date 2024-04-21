@@ -1,6 +1,6 @@
 ﻿using System.CommandLine;
 
-namespace ReSGidency.MetaParser;
+namespace ReSGidency.Console;
 
 public class Program
 {

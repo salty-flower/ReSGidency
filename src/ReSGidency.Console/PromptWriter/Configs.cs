@@ -1,6 +1,6 @@
 ﻿using ReSGidency.Models;
 
-namespace ReSGidency.MetaParser.PromptWriter;
+namespace ReSGidency.Console.PromptWriter;
 
 static partial class Configs
 {

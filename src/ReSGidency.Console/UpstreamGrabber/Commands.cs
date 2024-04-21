@@ -1,6 +1,6 @@
 ﻿using System.CommandLine;
 
-namespace ReSGidency.MetaParser.UpstreamGrabber;
+namespace ReSGidency.Console.UpstreamGrabber;
 
 static class Commands
 {
@@ -35,7 +35,7 @@ static class Commands
 
         foreach (var entry in entries)
         {
-            Console.WriteLine(entry);
+            System.Console.WriteLine(entry);
         }
     }
 }

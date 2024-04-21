@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using ExcelDataReader;
 
-namespace ReSGidency.MetaParser.IndustryParser;
+namespace ReSGidency.Console.IndustryParser;
 
 static partial class Utilities
 {

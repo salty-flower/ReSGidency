@@ -1,7 +1,6 @@
-﻿using OpenAI_API.Models;
 ﻿using System.Text.RegularExpressions;
 
-namespace ReSGidency.MetaParser.GPTConnector;
+namespace ReSGidency.Console.GPTConnector;
 
 static partial class Configs
 {

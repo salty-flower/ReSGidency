@@ -1,4 +1,4 @@
-﻿namespace ReSGidency.MetaParser.UpstreamGrabber;
+﻿namespace ReSGidency.Console.UpstreamGrabber;
 
 static class Configs
 {

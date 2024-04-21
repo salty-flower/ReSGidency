@@ -1,8 +1,7 @@
-﻿using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 
-namespace ReSGidency.MetaParser.UpstreamGrabber;
+namespace ReSGidency.Console.UpstreamGrabber;
 
 static partial class Utilities
 {
