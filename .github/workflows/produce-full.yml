@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+      - ci-test
+      
+jobs:
+  run_e2e:
+    name: run end to end
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/download-artifact@v4
+      with: 
+        # Name of the artifact to download.
+        # If unspecified, all artifacts for the run are downloaded.
+        # Optional.
+        name: ubuntu-latest
+    - name: Display structure of downloaded files
+      run: ls -R -l -a
+    - name: run
+      run: ./ReSGidency.Console run-end2end -k ${{ secrets.OPENAI_API_KEY }}
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.3.2
+      with:
+        # Artifact name
+        name: output-json-array
+        path: gpt-parsed.json
