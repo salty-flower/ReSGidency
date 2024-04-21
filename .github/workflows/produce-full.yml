@@ -10,7 +10,11 @@ jobs:
 
     steps:
     - name: download binary
-      uses: actions/download-artifact@v4
+      uses: dawidd6/action-download-artifact@v3
+      with:
+        workflow: build-binaries.yml
+        workflow_conclusion: success
+        name: ubuntu-latest
     - name: Display structure of downloaded files
       run: ls -R -l -a
     - name: run
