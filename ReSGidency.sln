@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReSGidency.Models", "src\ReSGidency.Models\ReSGidency.Models.csproj", "{13EC4304-1835-426E-A9E7-E1A67BEA7DB9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReSGidency.MetaParser", "src\ReSGidency.MetaParser\ReSGidency.MetaParser.csproj", "{3285D732-5DA1-437F-859C-41392479854A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReSGidency.Console", "src\ReSGidency.Console\ReSGidency.Console.csproj", "{3285D732-5DA1-437F-859C-41392479854A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
