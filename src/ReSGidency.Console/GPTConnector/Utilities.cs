@@ -64,7 +64,9 @@ static class Utilities
                 })
             )
                 tasks.Add(t);
-            await Task.Delay(TimeSpan.FromMinutes(1));
+
+            if (g != groups.Last())
+                await Task.Delay(TimeSpan.FromMinutes(1));
         }
         await Task.WhenAll(tasks);
         return $"[{string.Join(',', result)}]";

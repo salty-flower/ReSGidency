@@ -33,6 +33,11 @@ static class Commands
 
     private static async Task ProcessEnd2endAsync(FileInfo? jsonOutput, string openAIKey)
     {
+        if (!GPTConnector.Configs.OpenAIAPIKeyPattern().Match(openAIKey).Success)
+        {
+            throw new ArgumentException("API key is required.");
+        }
+
         var entries = await UpstreamGrabber.Utilities.FetchAndParseEntriesAsync();
         var gptParsedEntries = await GPTConnector.Utilities.ParseBulkAsync(entries, openAIKey);
         if (jsonOutput is not null)
