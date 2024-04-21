@@ -9,12 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/download-artifact@v4
-      with: 
-        # Name of the artifact to download.
-        # If unspecified, all artifacts for the run are downloaded.
-        # Optional.
-        name: ubuntu-latest
+    - name: download binary
+      uses: actions/download-artifact@v4
     - name: Display structure of downloaded files
       run: ls -R -l -a
     - name: run
