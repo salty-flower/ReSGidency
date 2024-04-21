@@ -20,7 +20,7 @@ jobs:
     - name: make executable
       run: chmod +x ReSGidency.Console
     - name: run
-      run: ./ReSGidency.Console run-end2end -k ${{ secrets.OPENAI_API_KEY }}
+      run: ./ReSGidency.Console run-end2end -k "${{ secrets.OPENAI_API_KEY }}"
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.2
       with:
