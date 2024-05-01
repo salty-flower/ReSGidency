@@ -81,7 +81,7 @@ static class Utilities
     }
 
     internal static async Task<string> GetGPTReply(string fullPrompt, string openAIKey) =>
-        (await new OpenAI_API.OpenAIAPI(openAIKey).Chat.CreateChatCompletionAsync(fullPrompt))
+        (await new OpenAIAPI(openAIKey).Chat.CreateChatCompletionAsync(fullPrompt))
             .Choices[0]
             .Message
             .TextContent;
