@@ -1,7 +1,5 @@
 ﻿using System.Collections.Concurrent;
-using OpenAI_API;
-using OpenAI_API.Chat;
-using OpenAI_API.Models;
+using OpenAI.Chat;
 
 namespace ReSGidency.Console.GPTConnector;
 
@@ -9,7 +7,7 @@ static class Utilities
 {
     internal static async Task<IList<string>> ParseBatchAsync(
         IList<string> entries,
-        OpenAIAPI apiInstance
+        ChatClient apiInstance
     )
     {
         if (entries.Count > Configs.MAX_ENTRIES_ALLOWED)
@@ -20,25 +18,25 @@ static class Utilities
             );
         }
 
-        var chatReq = new ChatRequest
-        {
-            Messages =
+        var messages = (ChatMessage[])
+
             [
-                new(ChatMessageRole.System, PromptWriter.Configs.FULL_HEADER),
-                .. entries.Select(str => new ChatMessage(ChatMessageRole.User,str) )
-            ],
-            Model = Model.GPT4_Turbo
-        };
-        return (await apiInstance.Chat.CreateChatCompletionAsync(chatReq))
-            .Choices[0]
-            .Message.TextContent.Split(['\n', '\r'])
-            .Where(str => str != "")
+                ChatMessage.CreateSystemMessage(PromptWriter.Configs.FULL_HEADER),
+                .. entries.Select(str => ChatMessage.CreateUserMessage(str))
+            ];
+
+        return (await apiInstance.CompleteChatAsync(messages))
+            .Value.Content.Select(part => part.Text)
             .ToList();
     }
 
     internal static async Task<string> ParseBulkAsync(IEnumerable<string> entries, string openAIKey)
     {
-        OpenAIAPI apiInstance = new(openAIKey);
+        ChatClient apiInstance =
+            new(
+                model: "gpt-4o-mini",
+                credential: new System.ClientModel.ApiKeyCredential(openAIKey)
+            );
 
         var result = new List<string>();
         var tasks = new ConcurrentBag<Task>();
@@ -81,8 +79,15 @@ static class Utilities
     }
 
     internal static async Task<string> GetGPTReply(string fullPrompt, string openAIKey) =>
-        (await new OpenAIAPI(openAIKey).Chat.CreateChatCompletionAsync(fullPrompt))
-            .Choices[0]
-            .Message
-            .TextContent;
+        string.Join(
+            '\n',
+            (
+                await new ChatClient(
+                    model: "gpt-4o-mini",
+                    credential: new System.ClientModel.ApiKeyCredential(openAIKey)
+                ).CompleteChatAsync(fullPrompt)
+            )
+                .Value
+                .Content
+        );
 }
