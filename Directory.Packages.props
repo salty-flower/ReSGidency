@@ -1,0 +1,9 @@
+<Project>
+    <ItemGroup>
+        <PackageVersion Include="ExcelDataReader" Version="3.7.0" />
+        <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+        <PackageVersion Include="ExcelDataReader.DataSet" Version="3.7.0" />
+        <PackageVersion Include="OpenAI" Version="2.0.0-beta.7" />
+        <PackageVersion Include="HtmlAgilityPack" Version="1.11.61" />
+    </ItemGroup>
+</Project>
