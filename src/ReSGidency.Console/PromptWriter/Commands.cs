@@ -7,7 +7,7 @@ static class Commands
     private static readonly Option<IEnumerable<string>> RawEntriesOption =
         new(
             aliases: ["-e", "--entries"],
-            description: "The raw entries to be processed.",
+            description: "The raw entries file or text to be processed.",
             getDefaultValue: () => []
         );
 
@@ -34,6 +34,22 @@ static class Commands
         }
     }
 
-    private static void PrintFullPrompt(IEnumerable<string> entries, FileInfo outputFile) =>
-        File.WriteAllText(outputFile.FullName, Configs.GetPromptText(entries));
+    private static void PrintFullPrompt(IEnumerable<string> entries, FileInfo outputFile)
+    {
+        var entryItems = new List<string>();
+
+        foreach (var entry in entries)
+        {
+            if (File.Exists(entry))
+            {
+                entryItems.AddRange(File.ReadAllLines(entry));
+            }
+            else
+            {
+                entryItems.Add(entry);
+            }
+        }
+
+        File.WriteAllText(outputFile.FullName, Configs.GetPromptText(entryItems));
+    }
 }
