@@ -2,6 +2,7 @@
 
 public enum ApplicationStatus
 {
+    Unspecified,
     Pending,
     Successful,
     Failed

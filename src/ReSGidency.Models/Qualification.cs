@@ -14,6 +14,6 @@ public record Qualification(
     string[] InstitutionDescriptors,
     string? Institution,
     string? Major,
-    DateTime? GraduationDate,
+    DateOnly? GraduationDate,
     string? Country // eg. "本地大学" would mean Singapore
 );
