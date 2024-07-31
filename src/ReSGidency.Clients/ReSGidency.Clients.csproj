@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <PackageReference Include="ExcelDataReader" />
+        <PackageReference Include="HtmlAgilityPack" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+        <PackageReference Include="OpenAI" />
+        <PackageReference Include="ExcelDataReader.DataSet" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\ReSGidency.Models\ReSGidency.Models.csproj" />
+    </ItemGroup>
+</Project>
