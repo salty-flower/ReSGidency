@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <UseCurrentRuntimeIdentifier>true</UseCurrentRuntimeIdentifier>
+        <SelfContained>true</SelfContained>
+        <PublishTrimmed>false</PublishTrimmed>
+        <PublishAot>false</PublishAot>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="PowerShellStandard.Library" />
+        <PackageReference Include="Serilog" />
+        <PackageReference Include="Serilog.Extensions.Logging" />
+        <PackageReference Include="Serilog.Sinks.Console" />
+        <ProjectReference Include="..\ReSGidency.Clients\ReSGidency.Clients.csproj" />
+    </ItemGroup>
+</Project>

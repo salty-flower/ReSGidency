@@ -2,9 +2,14 @@
     <ItemGroup>
         <PackageVersion Include="ExcelDataReader" Version="3.7.0" />
         <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+        <PackageVersion Include="PowerShellStandard.Library" Version="5.1.1" />
+        <PackageVersion Include="Serilog" Version="4.0.1" />
+        <PackageVersion Include="Serilog.Extensions.Logging" Version="8.0.0" />
+        <PackageVersion Include="Serilog.Sinks.Console" Version="6.0.0" />
         <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
         <PackageVersion Include="ExcelDataReader.DataSet" Version="3.7.0" />
         <PackageVersion Include="OpenAI" Version="2.0.0-beta.7" />
         <PackageVersion Include="HtmlAgilityPack" Version="1.11.61" />
+        <PackageVersion Include="System.Management.Automation" Version="7.5.0-preview.3" />
     </ItemGroup>
 </Project>
