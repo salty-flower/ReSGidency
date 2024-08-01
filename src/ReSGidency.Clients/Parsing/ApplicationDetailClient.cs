@@ -1,10 +1,18 @@
 ﻿using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using OpenAI.Chat;
 using ReSGidency.Models;
 
 namespace ReSGidency.Clients.Parsing;
+
+[JsonSerializable(typeof(IList<ApplicationDetail>))]
+[JsonSourceGenerationOptions(
+    WriteIndented = true,
+    PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase
+)]
+public partial class ApplicationDetailContext : JsonSerializerContext { }
 
 public class ApplicationDetailClient(ChatClient chatClient, ILogger<ApplicationDetailClient> logger)
     : IParseClient<string, ApplicationDetail, StreamingChatCompletionUpdate>
@@ -73,7 +81,12 @@ public class ApplicationDetailClient(ChatClient chatClient, ILogger<ApplicationD
                     )
             ),
             new UserChatMessage(example1string),
-            new AssistantChatMessage(JsonSerializer.Serialize((ApplicationDetail[])[example1])),
+            new AssistantChatMessage(
+                JsonSerializer.Serialize(
+                    [example1],
+                    ApplicationDetailContext.Default.IListApplicationDetail
+                )
+            ),
             new UserChatMessage(string.Join("\n\n", UnstructuredData)),
         ];
 
@@ -94,6 +107,9 @@ public class ApplicationDetailClient(ChatClient chatClient, ILogger<ApplicationD
         }
 
         logger.LogInformation("Parsing completed with {length} characters", msgBuffer.Length);
-        return JsonSerializer.Deserialize<IList<ApplicationDetail>>(msgBuffer.ToString())!;
+        return JsonSerializer.Deserialize(
+            msgBuffer.ToString(),
+            ApplicationDetailContext.Default.IListApplicationDetail
+        )!;
     }
 }
