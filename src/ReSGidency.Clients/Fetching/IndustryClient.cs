@@ -27,15 +27,25 @@ public partial class IndustryDocument : IListDocument<Industry, IExcelDataReader
         ).ToImmutableArray();
 }
 
-public class IndustryClient(HttpClient client) : IListClient<Industry, IExcelDataReader>
+public class IndustryClient(HttpClient client, ILogger<IndustryClient> logger)
+    : IListClient<Industry, IExcelDataReader>
 {
     private const string TableURL =
         "https://www.singstat.gov.sg/-/media/files/standards_and_classifications/"
         + "industrial_classification/ssic2020-classification-structure.ashx";
 
-    public async Task<IListDocument<Industry, IExcelDataReader>> LoadFromRemoteAsync() =>
-        new IndustryDocument
+    public async Task<IListDocument<Industry, IExcelDataReader>> LoadFromRemoteAsync()
+    {
+        logger.LogInformation("Downloading SSIC table from {TableURL}", TableURL);
+        var response = (await client.GetAsync(TableURL))!;
+        logger.LogInformation(
+            "Downloaded {Length} bytes, reported last modification {LastModified}",
+            response.Content.Headers.ContentLength,
+            response.Content.Headers.LastModified
+        );
+        return new IndustryDocument
         {
-            RawData = ExcelReaderFactory.CreateReader((await client.GetStreamAsync(TableURL))!)
+            RawData = ExcelReaderFactory.CreateReader(response.Content.ReadAsStream())
         };
+    }
 }
