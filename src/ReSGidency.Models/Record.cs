@@ -1,4 +1,7 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Text.Encodings.Web;
+using System.Text.Json.Serialization;
+using System.Text.Unicode;
+using EnumsNET;
 
 namespace ReSGidency.Models;
 
@@ -13,14 +16,37 @@ public enum ApplicationModifiers
     Family = Sponsored | WithSon | WithDaughter,
 }
 
-public record struct ApplicationRecord(
+public partial record struct ApplicationRecord(
     string Username,
     string Description,
     ApplicationStatus Status,
     DateOnly? ApplicationDate,
     DateOnly? DecisionDate,
     DateTime UpdateTime
-);
+)
+{
+    [JsonSourceGenerationOptions(WriteIndented = true)]
+    [JsonSerializable(typeof(ApplicationRecord))]
+    [JsonSerializable(typeof(IEnumerable<ApplicationRecord>))]
+    public partial class JsonContext : JsonSerializerContext
+    {
+        static JsonContext() =>
+            Default = new JsonContext(
+                new()
+                {
+                    Encoder = JavaScriptEncoder.Create(
+                        UnicodeRanges.BasicLatin,
+                        UnicodeRanges.CjkCompatibility,
+                        UnicodeRanges.CjkUnifiedIdeographs
+                    )
+                }
+            );
+    }
+
+    public override readonly string ToString() =>
+        $"[{Username}@{UpdateTime:yyyy-MM-dd}] {ApplicationDate:yyyy-MM-dd} --{Status.GetName()}-- {DecisionDate:yyyy-MM-dd}"
+        + $"\n```\n{Description}\n```";
+}
 
 public record struct ApplicationDetail(
     InstitutionDescriptors.Level? Level,
