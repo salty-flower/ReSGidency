@@ -1,5 +1,6 @@
 <Project>
     <ItemGroup>
+        <PackageVersion Include="Enums.NET" Version="5.0.0" />
         <PackageVersion Include="ExcelDataReader" Version="3.7.0" />
         <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
         <PackageVersion Include="PowerShellStandard.Library" Version="5.1.1" />
