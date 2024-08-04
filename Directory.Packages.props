@@ -12,5 +12,6 @@
         <PackageVersion Include="OpenAI" Version="2.0.0-beta.7" />
         <PackageVersion Include="HtmlAgilityPack" Version="1.11.61" />
         <PackageVersion Include="System.Management.Automation" Version="7.5.0-preview.3" />
+        <PackageVersion Include="System.Text.Json" Version="8.0.4" />
     </ItemGroup>
 </Project>
