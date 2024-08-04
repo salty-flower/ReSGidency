@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		.prettierrc.yaml = .prettierrc.yaml
 		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
 		Directory.Packages.props = Directory.Packages.props
 	EndProjectSection
 EndProject
@@ -18,6 +19,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReSGidency.Clients", "src\ReSGidency.Clients\ReSGidency.Clients.csproj", "{BF2007CA-06F0-4F1C-9070-FD59DCDC37A3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReSGidency.Pwsh", "src\ReSGidency.Pwsh\ReSGidency.Pwsh.csproj", "{DB5DF6F1-D89A-4B8D-99C9-B3BE48FB9D2A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReSGidency.CliFx", "src\ReSGidency.CliFx\ReSGidency.CliFx.csproj", "{AEC2AB7E-E6A9-4BCE-92FF-9254DD0021C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +44,10 @@ Global
 		{DB5DF6F1-D89A-4B8D-99C9-B3BE48FB9D2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB5DF6F1-D89A-4B8D-99C9-B3BE48FB9D2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB5DF6F1-D89A-4B8D-99C9-B3BE48FB9D2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEC2AB7E-E6A9-4BCE-92FF-9254DD0021C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEC2AB7E-E6A9-4BCE-92FF-9254DD0021C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEC2AB7E-E6A9-4BCE-92FF-9254DD0021C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEC2AB7E-E6A9-4BCE-92FF-9254DD0021C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
