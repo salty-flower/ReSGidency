@@ -17,7 +17,7 @@ public record struct ApplicationRecord(
     string Username,
     string Description,
     ApplicationStatus Status,
-    DateOnly ApplicationDate,
+    DateOnly? ApplicationDate,
     DateOnly? DecisionDate,
     DateTime UpdateTime
 );

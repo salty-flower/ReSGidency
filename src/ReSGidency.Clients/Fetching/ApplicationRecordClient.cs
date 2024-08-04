@@ -8,6 +8,13 @@ public class ApplicationRecordsDocument : IListDocument<ApplicationRecord, HtmlD
 {
     public required HtmlDocument RawData { get; init; }
 
+    private static DateOnly? TryGetDate(string maybeDate) =>
+        maybeDate.Trim().Length == 0
+            ? null
+            : DateOnly.TryParse(maybeDate, out var parsedDate)
+                ? parsedDate
+                : null;
+
     public IReadOnlyList<ApplicationRecord> Parse() =>
         RawData
             .DocumentNode.SelectSingleNode("//table/tbody")
@@ -25,10 +32,8 @@ public class ApplicationRecordsDocument : IListDocument<ApplicationRecord, HtmlD
                         "杯具" => ApplicationStatus.Failed,
                         _ => ApplicationStatus.Unspecified
                     },
-                    DateOnly.Parse(cells[4].InnerText.Trim()),
-                    cells[5].InnerText.Trim() == ""
-                        ? null
-                        : DateOnly.Parse(cells[5].InnerText.Trim()),
+                    TryGetDate(cells[4].InnerText),
+                    TryGetDate(cells[5].InnerText),
                     DateTime.Parse(cells[6].InnerText.Trim())
                 );
             })
