@@ -43,6 +43,7 @@ public class IndustryClient(HttpClient client, ILogger<IndustryClient> logger)
             response.Content.Headers.ContentLength,
             response.Content.Headers.LastModified
         );
+        System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         return new IndustryDocument
         {
             RawData = ExcelReaderFactory.CreateReader(response.Content.ReadAsStream())
